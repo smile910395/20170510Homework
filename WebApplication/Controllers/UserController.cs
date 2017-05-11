@@ -18,23 +18,18 @@ namespace WebApplication.Controllers
         {
             return View();
         }
+        
         [HttpPost]
-        public ActionResult Login(LogonViewModel pageData)
+        public ActionResult Logon(LogonViewModel pageData)
         {
-            var status = "";
-            if (pageData.Account == "skill" && pageData.Password == "tree")
+            if (pageData.Email.Contains("skilltree") || pageData.Email.Contains("demo") || pageData.Email.Contains("twMVC") )
             {
-                pageData.Message = $"您使用{pageData.Account}登入成功。";
-                status = "alert-success";
-                //pageData.Status = $"alert-success";
+                pageData.Message = $"您使用{pageData.Email}登入失敗。(帳號不得包含skilltree、demo、twMVC等字串)";
             }
             else
             {
-                pageData.Message = $"您使用{pageData.Account}登入失敗。";
-                status = "alert-danger";
-                //pageData.Status = $"alert-danger";
+                pageData.Message = $"您使用{pageData.Email}登入成功。";
             }
-            ViewData["Status"] = string.Format("<div class=\"alert {0} \">{1}</div>", status, pageData.Message);
             return View(pageData);
         }
     }
