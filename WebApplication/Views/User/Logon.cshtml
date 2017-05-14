@@ -21,15 +21,7 @@
 
 @if (Model != null && !string.IsNullOrWhiteSpace(Model.Message))
 {
-    if (Model.Email.Contains("skilltree") || Model.Email.Contains("demo") || Model.Email.Contains("twMVC"))
-    {
-        <div class="alert alert-success"> @Model.Message </div>
-    }
-    else
-    {
-        <div class="alert alert-danger">@Model.Message</div>
-    }
-
+        <div class="alert @ViewData["alert"]">@Model.Message</div>
 }
 
 

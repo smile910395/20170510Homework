@@ -24,11 +24,24 @@ namespace WebApplication.Controllers
         {
             if (pageData.Email.Contains("skilltree") || pageData.Email.Contains("demo") || pageData.Email.Contains("twMVC") )
             {
-                pageData.Message = $"您使用{pageData.Email}登入失敗。(帳號不得包含skilltree、demo、twMVC等字串)";
+                if (pageData.Email.Contains("skilltree"))
+                {
+                    ModelState.AddModelError("Email", "帳號不得包含skilltree的字串");
+                }else if (pageData.Email.Contains("demo"))
+                {
+                    ModelState.AddModelError("Email", "帳號不得包含demo的字串");
+                }
+                else if (pageData.Email.Contains("twMVC"))
+                {
+                    ModelState.AddModelError("Email", "帳號不得包含twMVC的字串");
+                }
+                ViewData["alert"] = "alert-danger";
+               
             }
             else
             {
                 pageData.Message = $"您使用{pageData.Email}登入成功。";
+                ViewData["alert"] = "alert-success";
             }
             return View(pageData);
         }

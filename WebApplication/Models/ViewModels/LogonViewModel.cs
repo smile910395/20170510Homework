@@ -11,9 +11,12 @@ namespace WebApplication.Models.ViewModels
 
         [Required]
         [EmailAddress]
+        [Display(Name = "電子郵件(Email)")]
         public string Email { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "密碼(Password)")]
         [StringLength(20, MinimumLength = 4, ErrorMessage = "請輸入4-20位數")]
         public string Password { get; set; }
 
